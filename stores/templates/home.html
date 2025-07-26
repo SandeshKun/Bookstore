@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Welcome to Our Bookstore</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #4a5568;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .book-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .book-author {
+            color: #718096;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .book-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #38a169;
+        }
+
+        .book-category {
+            display: inline-block;
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .no-books {
+            text-align: center;
+            color: #718096;
+            font-style: italic;
+            padding: 40px;
+        }
+
+        .welcome-message {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Our Amazing Bookstore</h1>
+            <p class="subtitle">Discover your next favorite book in our curated collection</p>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number">{{ total_books|default:0 }}</span>
+                    <span class="stat-label">Books Available</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">{{ total_authors|default:0 }}</span>
+                    <span class="stat-label">Authors</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">{{ total_categories|default:0 }}</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+            </div>
+        </header>
+
+        {% if total_books > 0 %}
+            <div class="welcome-message">
+                <h3>🎉 Welcome to our literary paradise!</h3>
+                <p>We have {{ total_books }} amazing books waiting for you to explore.</p>
+            </div>
+        {% endif %}
+
+        {% if featured_books %}
+        <div class="section">
+            <h2>⭐ Featured Books</h2>
+            <div class="books-grid">
+                {% for book in featured_books %}
+                <div class="book-card">
+                    <div class="book-title">{{ book.title }}</div>
+                    <div class="book-author">by {{ book.get_authors_display|default:"Unknown Author" }}</div>
+                    {% if book.discount_percentage > 0 %}
+                        <div class="book-price">
+                            <span style="text-decoration: line-through; color: #a0aec0;">${{ book.price }}</span>
+                            <span style="color: #e53e3e;">${{ book.discounted_price }}</span>
+                            <small style="background: #e53e3e; color: white; padding: 2px 6px; border-radius: 10px; margin-left: 5px;">{{ book.discount_percentage }}% OFF</small>
+                        </div>
+                    {% else %}
+                        <div class="book-price">${{ book.price }}</div>
+                    {% endif %}
+                    {% if book.category %}
+                        <div class="book-category">{{ book.category.name }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if latest_books %}
+        <div class="section">
+            <h2>🆕 Latest Arrivals</h2>
+            <div class="books-grid">
+                {% for book in latest_books %}
+                <div class="book-card">
+                    <div class="book-title">{{ book.title }}</div>
+                    <div class="book-author">by {{ book.get_authors_display|default:"Unknown Author" }}</div>
+                    <div class="book-price">${{ book.price }}</div>
+                    {% if book.category %}
+                        <div class="book-category">{{ book.category.name }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if bestsellers %}
+        <div class="section">
+            <h2>🔥 Bestsellers</h2>
+            <div class="books-grid">
+                {% for book in bestsellers %}
+                <div class="book-card">
+                    <div class="book-title">{{ book.title }}</div>
+                    <div class="book-author">by {{ book.get_authors_display|default:"Unknown Author" }}</div>
+                    <div class="book-price">${{ book.price }}</div>
+                    {% if book.average_rating > 0 %}
+                        <div style="color: #f6ad55; margin-top: 5px;">
+                            ⭐ {{ book.average_rating }}/5 ({{ book.total_reviews }} reviews)
+                        </div>
+                    {% endif %}
+                    {% if book.category %}
+                        <div class="book-category">{{ book.category.name }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if not total_books %}
+        <div class="section">
+            <div class="no-books">
+                <h2>📚 Getting Ready...</h2>
+                <p>We're currently setting up our amazing book collection!</p>
+                <p>Check back soon or visit our admin panel to add some books.</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="navigation">
+            <a href="/books/" class="nav-button">🔍 Browse All Books</a>
+            <a href="/admin/" class="nav-button">⚙️ Admin Panel</a>
+        </div>
+    </div>
+</body>
+</html>

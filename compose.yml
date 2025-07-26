@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    container_name: bookstore_web
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=1
+    restart: unless-stopped
